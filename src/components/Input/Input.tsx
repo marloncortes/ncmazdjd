@@ -24,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
 			<input
 				ref={ref}
 				type={type}
-				className={`block w-full border-neutral-200 bg-white hover:ring hover:ring-primary-200/50 focus:border-primary-300 focus:ring focus:ring-primary-200/50 dark:border-neutral-600 dark:bg-transparent dark:hover:ring-primary-500/30 dark:focus:ring-primary-500/30 ${rounded} ${fontClass} ${sizeClass} ${className}`}
+				className={`block w-full border-neutral-200 bg-white hover:ring hover:ring-primary-200/50 focus:border-primary-300 focus:ring focus:ring-primary-200/50 dark:border-neutral-600 dark:bg-transparent dark:placeholder:text-neutral-400 dark:hover:ring-primary-500/30 dark:focus:ring-primary-500/30 ${rounded} ${fontClass} ${sizeClass} ${className}`}
 				{...args}
 			/>
 		)

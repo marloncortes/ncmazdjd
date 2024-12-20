@@ -1,6 +1,6 @@
 'use client'
 import { useState, Fragment, useEffect } from 'react'
-import { Transition } from '@headlessui/react'
+import { Transition, TransitionChild } from '@headlessui/react'
 import NavMobile from '@/components/Navigation/NavMobile'
 import { usePathname } from 'next/navigation'
 import { FragmentType } from '@/__generated__'
@@ -25,7 +25,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
 		return (
 			<Transition show={isVisable} as={Fragment}>
 				<div className="relative z-50">
-					<Transition.Child
+					<TransitionChild
 						as={Fragment}
 						enter=" duration-300"
 						enterFrom="opacity-0"
@@ -38,9 +38,9 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
 							className="fixed inset-0 bg-neutral-900 bg-opacity-50"
 							onClick={handleCloseMenu}
 						/>
-					</Transition.Child>
+					</TransitionChild>
 
-					<Transition.Child
+					<TransitionChild
 						as={Fragment}
 						enter="transition duration-100 transform"
 						enterFrom="opacity-0 -translate-x-14 rtl:translate-x-14"
@@ -59,7 +59,7 @@ const MenuBar: React.FC<MenuBarProps> = ({ menuItems }) => {
 								</div>
 							</div>
 						</div>
-					</Transition.Child>
+					</TransitionChild>
 				</div>
 			</Transition>
 		)

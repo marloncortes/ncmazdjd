@@ -49,7 +49,7 @@ const ControlSettingsDemo = () => {
 			<div>
 				<span className="text-sm font-medium">Header styles</span>
 				<div className="mt-1.5 flex items-center space-x-2 rtl:space-x-reverse">
-					{['style1', 'style2', 'style3'].map(style => {
+					{['style1', 'style2', 'style3'].map((style) => {
 						return (
 							<div
 								key={style}
@@ -73,7 +73,7 @@ const ControlSettingsDemo = () => {
 			<div>
 				<span className="text-sm font-medium">Theme dir</span>
 				<div className="mt-1.5 flex items-center space-x-2 rtl:space-x-reverse">
-					{(['rtl', 'ltr'] as ('rtl' | 'ltr')[]).map(dir => {
+					{(['rtl', 'ltr'] as ('rtl' | 'ltr')[]).map((dir) => {
 						return (
 							<div
 								key={dir}
@@ -105,7 +105,7 @@ const ControlSettingsDemo = () => {
 						{ name: 'Home 4', uri: '/home-4-video' },
 						{ name: 'Home 5', uri: '/home-5-gallery' },
 						{ name: 'Home 6', uri: '/home-6' },
-					].map(page => {
+					].map((page) => {
 						const isPage = router.asPath === page.uri
 						return (
 							<Link

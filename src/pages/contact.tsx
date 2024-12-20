@@ -23,6 +23,7 @@ import Page404Content from '@/container/404Content'
 import Error from '@/components/Error'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/24/solid'
+import { REVALIDATE_TIME } from '@/contains/contants'
 
 const PageContact = () => {
 	const T = getTrans()
@@ -71,7 +72,7 @@ const PageContact = () => {
 						)}
 						{item?.name === 'socials' && (
 							<div className="mt-3 flex flex-wrap gap-4 md:order-2">
-								{NC_SITE_SETTINGS.site_socials?.map(item => (
+								{NC_SITE_SETTINGS.site_socials?.map((item) => (
 									<a
 										key={item?.name}
 										href={item?.url}
@@ -101,7 +102,7 @@ const PageContact = () => {
 					className="grid grid-cols-1 gap-6"
 					action="#"
 					method="post"
-					onSubmit={e => {
+					onSubmit={(e) => {
 						e.preventDefault()
 						const form = e.target as HTMLFormElement
 						const formData = new FormData(form)
@@ -188,7 +189,7 @@ const PageContact = () => {
 	)
 }
 
-const Page: FaustPage<GetReadingListPageQuery> = props => {
+const Page: FaustPage<GetReadingListPageQuery> = (props) => {
 	if (NC_SITE_SETTINGS.contact_page?.enable === false) {
 		return (
 			<>
@@ -209,7 +210,7 @@ const Page: FaustPage<GetReadingListPageQuery> = props => {
 		>
 			<div className="container pb-20 pt-10 sm:py-20">
 				<main className="mx-auto max-w-5xl">
-					<Heading desc={NC_SITE_SETTINGS.contact_page?.sub_title}>
+					<Heading hTag="h1" desc={NC_SITE_SETTINGS.contact_page?.sub_title}>
 						{NC_SITE_SETTINGS.contact_page?.title}
 					</Heading>
 					<div className="my-10 border-t border-neutral-100 dark:border-neutral-700"></div>
@@ -251,7 +252,7 @@ Page.query = gql(`
 export function getStaticProps(ctx: GetStaticPropsContext) {
 	return getNextStaticProps(ctx, {
 		Page,
-		revalidate: 900,
+		revalidate: REVALIDATE_TIME,
 	})
 }
 

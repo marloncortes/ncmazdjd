@@ -12,6 +12,7 @@ import {
 } from '@/__generated__/graphql'
 import { updateViewerAllReactionPosts } from '@/stores/viewer/viewerSlice'
 import toast from 'react-hot-toast'
+import { Bookmark02Icon, MyBookmarkIcon } from '../Icons/Icons'
 
 export interface NcBookmarkProps {
 	containerClassName?: string
@@ -57,7 +58,7 @@ const NcBookmark: FC<NcBookmarkProps> = ({
 		if (type === NcmazFcUserReactionPostUpdateResuiltEnum.Removed) {
 			// neu type === Remove -> xoa khoi list binh thuong
 			newViewerReactionPosts = (viewerReactionPosts || []).filter(
-				post => !(post.title?.trim() == `${postDatabseId},SAVE`),
+				(post) => !(post.title?.trim() == `${postDatabseId},SAVE`),
 			)
 		}
 		if (type === NcmazFcUserReactionPostUpdateResuiltEnum.Error) {
@@ -76,7 +77,7 @@ const NcBookmark: FC<NcBookmarkProps> = ({
 			// Neu la add -> xoa khoi list
 			if (number === NcmazFcUserReactionPostNumberUpdateEnum.Add_1) {
 				newViewerReactionPosts = (viewerReactionPosts || []).filter(
-					post => !(post.title?.trim() == `${postDatabseId},SAVE`),
+					(post) => !(post.title?.trim() == `${postDatabseId},SAVE`),
 				)
 			}
 		}
@@ -96,6 +97,7 @@ const NcBookmark: FC<NcBookmarkProps> = ({
 				NcmazFcUserReactionPostUpdateResuiltEnum.Error
 		) {
 			console.log('___NcBookmark___error', { error, data })
+			toast.error('An error occurred, please try again later.')
 			// dispatch update viewer reaction posts -> when update have error
 			handleDispatchUpdateViewerReactionPosts(
 				postDatabseId,
@@ -114,7 +116,7 @@ const NcBookmark: FC<NcBookmarkProps> = ({
 
 		// for user logged in
 		return viewerReactionPosts.some(
-			post => post.title?.trim() == `${postDatabseId},SAVE`,
+			(post) => post.title?.trim() == `${postDatabseId},SAVE`,
 		)
 	}, [viewer, viewerReactionPosts, localSavedPostsList])
 
@@ -167,19 +169,10 @@ const NcBookmark: FC<NcBookmarkProps> = ({
 			title={isBookmarked ? 'Remove from saved list' : 'Save to reading list'}
 			onClick={handleClickSaveAction}
 		>
-			<svg
-				viewBox="0 0 24 24"
-				strokeWidth={1.5}
+			<MyBookmarkIcon
 				fill={isBookmarked ? 'currentColor' : 'none'}
-				stroke={'currentColor'}
 				className="z-[1] h-[18px] w-[18px]"
-			>
-				<path
-					strokeLinecap="round"
-					strokeLinejoin="round"
-					d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
-				/>
-			</svg>
+			/>
 
 			<span
 				className={`absolute inset-0 rounded-full ${

@@ -92,7 +92,7 @@ const MenuItemHeading: FC<Props> = ({
 						<div className="grid grid-cols-3 gap-1 p-3">
 							{headingItem.map((item) => (
 								<MenuItemUI key={item.title}>
-									{({ active }) => (
+									{({ focus: active }) => (
 										<button
 											className={`${
 												active || (item.isActive && item.isActive())
@@ -105,7 +105,6 @@ const MenuItemHeading: FC<Props> = ({
 												className="menu-item-svg flex h-5 w-5 flex-shrink-0 items-center justify-center sm:h-6 sm:w-6"
 												dangerouslySetInnerHTML={{ __html: item.icon }}
 											></div>
-											{/* <span className="ml-4"> {item.title}</span> */}
 										</button>
 									)}
 								</MenuItemUI>

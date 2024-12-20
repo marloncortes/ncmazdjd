@@ -53,6 +53,8 @@ export const GET_POSTS_FIRST_COMMON_FOR_DASHBOARD = 30
 export const GET_POSTS_FIRST_COMMON = 16
 export const GET_USERS_FIRST_COMMON = 10
 export const GET_CATEGORIES_FIRST_COMMON = 15
-export const GET_USER_REACTION_POSTS_FIRST_COMMON = 100
+
+//
+export const REVALIDATE_TIME = 900
 
 export { avatarColors }

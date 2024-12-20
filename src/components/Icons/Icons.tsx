@@ -417,3 +417,346 @@ export const MyIcon: FC<Props> = ({ className = 'w-6 h-6' }) => {
 		></svg>
 	)
 }
+
+export const MyTask01Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg className={props.className} viewBox="0 0 24 24" fill="none">
+		<path
+			d="M8 2V5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M16 2V5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M8 11H16"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M8 16H12"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeMiterlimit="10"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+
+export const FavouriteIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M19.4626 3.99415C16.7809 2.34923 14.4404 3.01211 13.0344 4.06801C12.4578 4.50096 12.1696 4.71743 12 4.71743C11.8304 4.71743 11.5422 4.50096 10.9656 4.06801C9.55962 3.01211 7.21909 2.34923 4.53744 3.99415C1.01807 6.15294 0.221721 13.2749 8.33953 19.2834C9.88572 20.4278 10.6588 21 12 21C13.3412 21 14.1143 20.4278 15.6605 19.2834C23.7783 13.2749 22.9819 6.15294 19.4626 3.99415Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+	</svg>
+)
+
+export const Comment01Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M8 13.5H16M8 8.5H12"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M6.09881 19C4.7987 18.8721 3.82475 18.4816 3.17157 17.8284C2 16.6569 2 14.7712 2 11V10.5C2 6.72876 2 4.84315 3.17157 3.67157C4.34315 2.5 6.22876 2.5 10 2.5H14C17.7712 2.5 19.6569 2.5 20.8284 3.67157C22 4.84315 22 6.72876 22 10.5V11C22 14.7712 22 16.6569 20.8284 17.8284C19.6569 19 17.7712 19 14 19C13.4395 19.0125 12.9931 19.0551 12.5546 19.155C11.3562 19.4309 10.2465 20.0441 9.14987 20.5789C7.58729 21.3408 6.806 21.7218 6.31569 21.3651C5.37769 20.6665 6.29454 18.5019 6.5 17.5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+	</svg>
+)
+
+export const ViewIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M21.544 11.045C21.848 11.4713 22 11.6845 22 12C22 12.3155 21.848 12.5287 21.544 12.955C20.1779 14.8706 16.6892 19 12 19C7.31078 19 3.8221 14.8706 2.45604 12.955C2.15201 12.5287 2 12.3155 2 12C2 11.6845 2.15201 11.4713 2.45604 11.045C3.8221 9.12944 7.31078 5 12 5C16.6892 5 20.1779 9.12944 21.544 11.045Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+		/>
+		<path
+			d="M15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+		/>
+	</svg>
+)
+
+export const Bookmark02Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M4 17.9808V9.70753C4 6.07416 4 4.25748 5.17157 3.12874C6.34315 2 8.22876 2 12 2C15.7712 2 17.6569 2 18.8284 3.12874C20 4.25748 20 6.07416 20 9.70753V17.9808C20 20.2867 20 21.4396 19.2272 21.8523C17.7305 22.6514 14.9232 19.9852 13.59 19.1824C12.8168 18.7168 12.4302 18.484 12 18.484C11.5698 18.484 11.1832 18.7168 10.41 19.1824C9.0768 19.9852 6.26947 22.6514 4.77285 21.8523C4 21.4396 4 20.2867 4 17.9808Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+
+export const Share05Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M18 7C18.7745 7.16058 19.3588 7.42859 19.8284 7.87589C21 8.99181 21 10.7879 21 14.38C21 17.9721 21 19.7681 19.8284 20.8841C18.6569 22 16.7712 22 13 22H11C7.22876 22 5.34315 22 4.17157 20.8841C3 19.7681 3 17.9721 3 14.38C3 10.7879 3 8.99181 4.17157 7.87589C4.64118 7.42859 5.2255 7.16058 6 7"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+		<path
+			d="M12.0253 2.00052L12 14M12.0253 2.00052C11.8627 1.99379 11.6991 2.05191 11.5533 2.17492C10.6469 2.94006 9 4.92886 9 4.92886M12.0253 2.00052C12.1711 2.00657 12.3162 2.06476 12.4468 2.17508C13.3531 2.94037 15 4.92886 15 4.92886"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+
+export const RepeatIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M16.3884 3L17.3913 3.97574C17.8393 4.41165 18.0633 4.62961 17.9844 4.81481C17.9056 5 17.5888 5 16.9552 5H9.19422C5.22096 5 2 8.13401 2 12C2 13.4872 2.47668 14.8662 3.2895 16"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M7.61156 21L6.60875 20.0243C6.16074 19.5883 5.93673 19.3704 6.01557 19.1852C6.09441 19 6.4112 19 7.04478 19H14.8058C18.779 19 22 15.866 22 12C22 10.5128 21.5233 9.13383 20.7105 8"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+
+export const ArrowMoveUpLeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M20 21V18.9231C20 16.9221 20 15.9217 19.8547 15.0846C19.0547 10.4765 15.0934 6.86243 10.0426 6.13259C9.12509 6 7.19318 6 5 6"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M7 3C6.39316 3.58984 4 5.15973 4 6C4 6.84027 6.39316 8.41016 7 9"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+export const MyArrowMoveUpLeftIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		fill="none"
+		viewBox="0 0 24 24"
+		stroke="currentColor"
+		{...props}
+	>
+		<path
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			strokeWidth={1.5}
+			d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
+		/>
+	</svg>
+)
+
+export const Edit02Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M14.0737 3.88545C14.8189 3.07808 15.1915 2.6744 15.5874 2.43893C16.5427 1.87076 17.7191 1.85309 18.6904 2.39232C19.0929 2.6158 19.4769 3.00812 20.245 3.79276C21.0131 4.5774 21.3972 4.96972 21.6159 5.38093C22.1438 6.37312 22.1265 7.57479 21.5703 8.5507C21.3398 8.95516 20.9446 9.33578 20.1543 10.097L10.7506 19.1543C9.25288 20.5969 8.504 21.3182 7.56806 21.6837C6.63212 22.0493 5.6032 22.0224 3.54536 21.9686L3.26538 21.9613C2.63891 21.9449 2.32567 21.9367 2.14359 21.73C1.9615 21.5234 1.98636 21.2043 2.03608 20.5662L2.06308 20.2197C2.20301 18.4235 2.27297 17.5255 2.62371 16.7182C2.97444 15.9109 3.57944 15.2555 4.78943 13.9445L14.0737 3.88545Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M13 4L20 11"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M14 22L22 22"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)
+
+export const Delete03Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M19.5 5.5L18.8803 15.5251C18.7219 18.0864 18.6428 19.3671 18.0008 20.2879C17.6833 20.7431 17.2747 21.1273 16.8007 21.416C15.8421 22 14.559 22 11.9927 22C9.42312 22 8.1383 22 7.17905 21.4149C6.7048 21.1257 6.296 20.7408 5.97868 20.2848C5.33688 19.3626 5.25945 18.0801 5.10461 15.5152L4.5 5.5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+		<path
+			d="M9 11.7349H15"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+		<path
+			d="M10.5 15.6543H13.5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+		<path
+			d="M3 5.5H21M16.0555 5.5L15.3729 4.09173C14.9194 3.15626 14.6926 2.68852 14.3015 2.39681C14.2148 2.3321 14.1229 2.27454 14.0268 2.2247C13.5937 2 13.0739 2 12.0343 2C10.9686 2 10.4358 2 9.99549 2.23412C9.89791 2.28601 9.80479 2.3459 9.7171 2.41317C9.32145 2.7167 9.10044 3.20155 8.65842 4.17126L8.05273 5.5"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinecap="round"
+		/>
+	</svg>
+)
+export const MyBookmarkIcon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg viewBox="0 0 24 24" strokeWidth={1.5} stroke={'currentColor'} {...props}>
+		<path
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"
+		/>
+	</svg>
+)
+
+export const Album02Icon = (props: React.SVGProps<SVGSVGElement>) => (
+	<svg
+		xmlns="http://www.w3.org/2000/svg"
+		viewBox="0 0 24 24"
+		width={24}
+		height={24}
+		color={'currentColor'}
+		fill={'none'}
+		{...props}
+	>
+		<path
+			d="M6 17.9745C6.1287 19.2829 6.41956 20.1636 7.07691 20.8209C8.25596 22 10.1536 22 13.9489 22C17.7442 22 19.6419 22 20.8209 20.8209C22 19.6419 22 17.7442 22 13.9489C22 10.1536 22 8.25596 20.8209 7.07691C20.1636 6.41956 19.2829 6.1287 17.9745 6"
+			stroke="currentColor"
+			strokeWidth="1.5"
+		/>
+		<path
+			d="M2 10C2 6.22876 2 4.34315 3.17157 3.17157C4.34315 2 6.22876 2 10 2C13.7712 2 15.6569 2 16.8284 3.17157C18 4.34315 18 6.22876 18 10C18 13.7712 18 15.6569 16.8284 16.8284C15.6569 18 13.7712 18 10 18C6.22876 18 4.34315 18 3.17157 16.8284C2 15.6569 2 13.7712 2 10Z"
+			stroke="currentColor"
+			strokeWidth="1.5"
+		/>
+		<path
+			d="M2 11.1185C2.61902 11.0398 3.24484 11.001 3.87171 11.0023C6.52365 10.9533 9.11064 11.6763 11.1711 13.0424C13.082 14.3094 14.4247 16.053 15 18"
+			stroke="currentColor"
+			strokeWidth="1.5"
+			strokeLinejoin="round"
+		/>
+		<path
+			d="M12.9998 7H13.0088"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+		/>
+	</svg>
+)

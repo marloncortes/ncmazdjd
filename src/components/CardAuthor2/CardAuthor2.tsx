@@ -6,6 +6,9 @@ import { FragmentType, useFragment } from '@/__generated__'
 import { NC_USER_FULL_FIELDS_FRAGMENT } from '@/fragments'
 import ncFormatDate from '@/utils/formatDate'
 import { getUserDataFromUserCardFragment } from '@/utils/getUserDataFromUserCardFragment'
+import getTrans from '@/utils/getTrans'
+
+const T = getTrans()
 
 export interface CardAuthor2Props {
 	author:
@@ -65,7 +68,7 @@ const CardAuthor2: FC<CardAuthor2Props> = ({
 									hoverReadingTime ? 'opacity-0 group-hover:opacity-100' : ''
 								}`}
 							>
-								{readingTime} min read
+								{readingTime} {T['min read'] ?? 'min read'}
 							</span>
 						</>
 					)}

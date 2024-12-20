@@ -98,6 +98,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 											<Link
 												href={item.uri || ''}
 												className="font-medium text-neutral-900 dark:text-neutral-200"
+												target={item.target || undefined}
 											>
 												{item.label}
 											</Link>
@@ -185,6 +186,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 					href={{
 						pathname: item.uri || '',
 					}}
+					target={item.target || undefined}
 				>
 					{item.label}
 				</Link>
@@ -195,6 +197,19 @@ const NavigationItem: FC<NavigationItemProps> = ({
 	// ===================== MENU DROPDOW =====================
 	const renderDropdownMenu = (menuDropdown: NavItemType) => {
 		const isHover = menuCurrentHovers.includes(menuDropdown.id)
+
+		if (!menuDropdown.children?.length) {
+			return (
+				<li
+					className={`menu-item menu-dropdown relative shrink-0 ${menuDropdown.cssClasses?.join(
+						' ',
+					)}`}
+				>
+					<>{renderMainItem(menuDropdown)}</>
+				</li>
+			)
+		}
+
 		return (
 			<Popover
 				as="li"
@@ -309,6 +324,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 				href={{
 					pathname: item.uri || '',
 				}}
+				target={item.target || undefined}
 			>
 				{item.label}
 				{item.children?.length ? (
@@ -330,6 +346,7 @@ const NavigationItem: FC<NavigationItemProps> = ({
 				<ItemC
 					className="relative inline-flex cursor-pointer items-center rounded-xl px-4 py-2.5 text-sm font-medium text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900 xl:px-5 2xl:text-[15px] dark:text-neutral-300 dark:hover:bg-neutral-800 dark:hover:text-neutral-200"
 					href={isLink ? item.uri || '' : ''}
+					target={item.target || undefined}
 				>
 					{item.label}
 					{item.children?.length ? (

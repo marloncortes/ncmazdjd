@@ -20,7 +20,7 @@ const WidgetHeading1: FC<WidgetHeading1Props> = ({
 		<div
 			className={`nc-WidgetHeading1 flex items-center justify-between border-b border-neutral-100 p-4 dark:border-neutral-700 ${className}`}
 		>
-			<h2 className="flex flex-wrap gap-3 text-base font-semibold text-neutral-900 dark:text-neutral-100">
+			<h2 className="flex flex-wrap items-center gap-2.5 text-base font-semibold text-neutral-900 dark:text-neutral-100">
 				{icon && <span className="flex-shrink-0">{icon}</span>}
 				<span>{title}</span>
 			</h2>

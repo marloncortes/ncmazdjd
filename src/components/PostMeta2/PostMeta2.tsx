@@ -6,6 +6,9 @@ import { FragmentType } from '@/__generated__'
 import { getImageDataFromImageFragment } from '@/utils/getImageDataFromImageFragment'
 import ncFormatDate from '@/utils/formatDate'
 import { getPostDataFromPostFragment } from '@/utils/getPostDataFromPostFragment'
+import getTrans from '@/utils/getTrans'
+
+const T = getTrans()
 
 export interface PostMeta2Props {
 	className?: string
@@ -83,7 +86,7 @@ const PostMeta2: FC<PostMeta2Props> = ({
 					</span>
 					<span className="mx-2 font-semibold">·</span>
 					<span className="text-neutral-700 dark:text-neutral-300">
-						{ncPostMetaData?.readingTime} min read
+						{ncPostMetaData?.readingTime} {T['min read'] ?? 'min read'}
 					</span>
 				</div>
 			</div>

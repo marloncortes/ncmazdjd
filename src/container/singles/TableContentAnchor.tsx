@@ -1,7 +1,16 @@
+import { MyTask01Icon } from '@/components/Icons/Icons'
+import getTrans from '@/utils/getTrans'
 import { flatListToHierarchical } from '@faustwp/core'
-import { Popover, Transition } from '@headlessui/react'
+import {
+	Popover,
+	PopoverButton,
+	PopoverPanel,
+	Transition,
+} from '@headlessui/react'
 import { ArrowRightIcon } from '@heroicons/react/24/outline'
 import { Fragment } from 'react'
+
+const T = getTrans()
 
 type HeadingNode = {
 	tag: string
@@ -50,7 +59,7 @@ const TableContent: React.FC<TableContentProps> = ({
 				}
 			},
 		)
-		headingsWithId = headingsWithId.filter(item => !!item.id)
+		headingsWithId = headingsWithId.filter((item) => !!item.id)
 
 		// map lại mảng headingsWithId, duyệt qua các item nếu item có level lớn hơn item trước đó thì item đó là con của item trước đó, nếu không thì item đó là con của item có level lớn hơn nó gần nhất
 		headingsWithId = headingsWithId.map((item, index) => {
@@ -77,7 +86,7 @@ const TableContent: React.FC<TableContentProps> = ({
 	const renderHeadings = (headings: HeadingNode[]) => {
 		return (
 			<>
-				{headings.map(heading => {
+				{headings.map((heading) => {
 					return (
 						<li key={heading.id}>
 							<a
@@ -106,9 +115,9 @@ const TableContent: React.FC<TableContentProps> = ({
 					id="on-this-page-title"
 					className="font-display text-sm font-medium text-slate-900 dark:text-white"
 				>
-					On this page
+					{T['On this page']}
 				</h2>
-				<div className="">
+				<div>
 					<ol className="mt-4 space-y-3 text-sm">
 						{renderHeadings(headingsWrapList)}
 					</ol>
@@ -126,65 +135,14 @@ const TableContent: React.FC<TableContentProps> = ({
 			<Popover className="relative z-40">
 				{({ open }) => (
 					<>
-						<Popover.Button
+						<PopoverButton
 							className={`${
 								open ? '' : 'text-opacity-90'
 							} group ${btnClassName} focus:outline-none focus-visible:ring-0`}
 							title="Table of contents"
 						>
-							<svg
-								className="h-[18px] w-[18px]"
-								viewBox="0 0 24 24"
-								fill="none"
-							>
-								<path
-									d="M8 2V5"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeMiterlimit="10"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M16 2V5"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeMiterlimit="10"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeMiterlimit="10"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M8 11H16"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeMiterlimit="10"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-								<path
-									d="M8 16H12"
-									stroke="currentColor"
-									strokeWidth="1.5"
-									strokeMiterlimit="10"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-								/>
-							</svg>
-							{/* <ChevronDownIcon
-                className={`${
-                  open ? "-rotate-180" : ""
-                } h-3 w-3 transition duration-150 ease-in-out`}
-                aria-hidden="true"
-              /> */}
-						</Popover.Button>
+							<MyTask01Icon className="h-[18px] w-[18px]" />
+						</PopoverButton>
 
 						<Transition
 							as={Fragment}
@@ -195,9 +153,9 @@ const TableContent: React.FC<TableContentProps> = ({
 							leaveFrom="opacity-100 translate-y-0"
 							leaveTo="opacity-0 translate-y-1"
 						>
-							<Popover.Panel className="lg:s-0 hiddenScrollbar absolute -end-2.5 bottom-full z-40 mb-5 max-h-[min(70vh,600px)] w-screen max-w-[min(90vw,20rem)] overflow-y-auto rounded-xl bg-white shadow-xl ring-1 ring-black/5 lg:end-auto lg:max-w-md lg:-translate-x-1/2 rtl:lg:translate-x-1/2 dark:bg-neutral-800 dark:ring-neutral-600">
+							<PopoverPanel className="lg:s-0 hiddenScrollbar absolute -end-2.5 bottom-full z-40 mb-5 max-h-[min(70vh,600px)] w-screen max-w-[min(90vw,20rem)] overflow-y-auto rounded-xl bg-white shadow-xl ring-1 ring-black/5 lg:end-auto lg:max-w-md lg:-translate-x-1/2 rtl:lg:translate-x-1/2 dark:bg-neutral-800 dark:ring-neutral-600">
 								<div className="relative p-4 sm:p-7">{renderContent()}</div>
-							</Popover.Panel>
+							</PopoverPanel>
 						</Transition>
 					</>
 				)}

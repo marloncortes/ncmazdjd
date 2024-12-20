@@ -4,7 +4,6 @@ import Button from '@/components/Button/Button'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import ButtonPrimary from './Button/ButtonPrimary'
 import getTrans from '@/utils/getTrans'
-import ButtonThird from './Button/ButtonThird'
 import { SearchIcon } from './Icons/Icons'
 import Input from './Input/Input'
 import { Description, Field, Label } from '@headlessui/react'
@@ -95,11 +94,7 @@ const ModalSelectKeyword: FC<Props> = ({ onUpdated, initText = '' }) => {
 				renderFooter={(closeModal) => {
 					return (
 						<div className="flex items-center justify-between">
-							<Button
-								pattern="link"
-								onClick={() => setKeyword('')}
-								// sizeClass="py-3 px-4 sm:py-3 sm:px-6"
-							>
+							<Button pattern="link" onClick={() => setKeyword('')}>
 								{T['Clear']}
 							</Button>
 							<ButtonPrimary
@@ -107,7 +102,6 @@ const ModalSelectKeyword: FC<Props> = ({ onUpdated, initText = '' }) => {
 									onUpdated(keyword)
 									closeModal()
 								}}
-								// sizeClass="py-3 px-4 sm:py-3 sm:px-6"
 							>
 								{T['Apply']}
 							</ButtonPrimary>

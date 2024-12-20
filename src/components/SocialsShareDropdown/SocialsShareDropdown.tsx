@@ -5,6 +5,7 @@ import { SOCIALS_DATA, TSocialShareItem } from '../SocialsShare/SocialsShare'
 import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import getTrans from '@/utils/getTrans'
+import { Share05Icon } from '../Icons/Icons'
 
 export interface Props {
 	className?: string
@@ -31,7 +32,7 @@ const initActions: NcDropDownItem<TDropDownShareItem>[] = [
 const SocialsShareDropdown: FC<Props> = ({
 	className = ' ',
 	sizeClass = 'h-9 w-9',
-	bgClass = 'bg-neutral-100 hover:bg-neutral-200 dark:bg-neutral-800 dark:hover:bg-neutral-700',
+	bgClass = 'bg-neutral-50 hover:bg-neutral-100 dark:bg-neutral-800 dark:hover:bg-neutral-700',
 	itemClass,
 	href = '',
 }) => {
@@ -54,7 +55,7 @@ const SocialsShareDropdown: FC<Props> = ({
 		}
 	}
 
-	const actions = initActions.map(item => {
+	const actions = initActions.map((item) => {
 		if (item.id === 'Facebook') {
 			item.href = `https://www.facebook.com/sharer/sharer.php?u=${link}`
 		} else if (item.id === 'Twitter') {
@@ -69,31 +70,7 @@ const SocialsShareDropdown: FC<Props> = ({
 		<div className={`nc-SocialsShare flex-shrink-0 ${className}`}>
 			<NcDropDown
 				className={`flex flex-shrink-0 items-center justify-center rounded-full text-neutral-700 focus:outline-none dark:text-neutral-200 ${sizeClass} ${bgClass}`}
-				renderTrigger={() => (
-					<svg className="h-5 w-5" viewBox="0 0 24 24" fill="none">
-						<path
-							d="M16.44 8.8999C20.04 9.2099 21.51 11.0599 21.51 15.1099V15.2399C21.51 19.7099 19.72 21.4999 15.25 21.4999H8.73998C4.26998 21.4999 2.47998 19.7099 2.47998 15.2399V15.1099C2.47998 11.0899 3.92998 9.2399 7.46998 8.9099"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-						<path
-							d="M12 15.0001V3.62012"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-						<path
-							d="M15.35 5.85L12 2.5L8.65002 5.85"
-							stroke="currentColor"
-							strokeWidth="1.5"
-							strokeLinecap="round"
-							strokeLinejoin="round"
-						/>
-					</svg>
-				)}
+				renderTrigger={() => <Share05Icon className="h-[18px] w-[18px]" />}
 				onClick={handleClick}
 				data={actions}
 				dropdownItemsClass={itemClass}

@@ -3,7 +3,11 @@
 import React from 'react'
 import ButtonClose from '@/components/ButtonClose/ButtonClose'
 import Logo from '@/components/Logo/Logo'
-import { Disclosure } from '@headlessui/react'
+import {
+	Disclosure,
+	DisclosureButton,
+	DisclosurePanel,
+} from '@headlessui/react'
 import { NavItemType } from './NavigationItem'
 import { ChevronDownIcon } from '@heroicons/react/24/solid'
 import Link from 'next/link'
@@ -45,6 +49,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
 								pathname: i.uri || '',
 							}}
 							className={`mt-0.5 flex rounded-lg pe-4 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800 ${itemClass}`}
+							target={i.target || '_self'}
 						>
 							<span
 								className={`py-2.5 ${!i.children ? 'block w-full' : ''}`}
@@ -55,9 +60,9 @@ const NavMobile: React.FC<NavMobileProps> = ({
 							{!!i.children?.length && (
 								<span
 									className="flex flex-grow items-center"
-									onClick={e => e.preventDefault()}
+									onClick={(e) => e.preventDefault()}
 								>
-									<Disclosure.Button
+									<DisclosureButton
 										as="span"
 										className="flex flex-grow justify-end"
 									>
@@ -65,17 +70,17 @@ const NavMobile: React.FC<NavMobileProps> = ({
 											className="ms-2 h-4 w-4 text-neutral-500"
 											aria-hidden="true"
 										/>
-									</Disclosure.Button>
+									</DisclosureButton>
 								</span>
 							)}
 						</Link>
 						{!!i.children?.length && (
-							<Disclosure.Panel>
+							<DisclosurePanel>
 								{_renderMenuChild(
 									i,
 									'ps-3 text-neutral-600 dark:text-neutral-400 ',
 								)}
-							</Disclosure.Panel>
+							</DisclosurePanel>
 						)}
 					</Disclosure>
 				))}
@@ -96,6 +101,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
 					href={{
 						pathname: item.uri || '',
 					}}
+					target={item.target || '_self'}
 				>
 					<span
 						className={!item.children ? 'block w-full' : ''}
@@ -104,8 +110,11 @@ const NavMobile: React.FC<NavMobileProps> = ({
 						{item.label}
 					</span>
 					{!!item.children?.length && (
-						<span className="block flex-grow" onClick={e => e.preventDefault()}>
-							<Disclosure.Button
+						<span
+							className="block flex-grow"
+							onClick={(e) => e.preventDefault()}
+						>
+							<DisclosureButton
 								as="span"
 								className="flex flex-grow justify-end"
 							>
@@ -113,12 +122,12 @@ const NavMobile: React.FC<NavMobileProps> = ({
 									className="ms-2 h-4 w-4 text-neutral-500"
 									aria-hidden="true"
 								/>
-							</Disclosure.Button>
+							</DisclosureButton>
 						</span>
 					)}
 				</Link>
 				{!!item.children?.length && (
-					<Disclosure.Panel>{_renderMenuChild(item)}</Disclosure.Panel>
+					<DisclosurePanel>{_renderMenuChild(item)}</DisclosurePanel>
 				)}
 			</Disclosure>
 		)
@@ -127,7 +136,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
 	const renderSearchForm = () => {
 		return (
 			<form
-				onSubmit={e => {
+				onSubmit={(e) => {
 					e.preventDefault()
 					router.push('/search/posts/' + e.currentTarget.mbsearch.value || '')
 				}}
@@ -167,7 +176,7 @@ const NavMobile: React.FC<NavMobileProps> = ({
 				</div>
 
 				<div className="mt-6 flex flex-wrap gap-x-7 gap-y-2">
-					{NC_SITE_SETTINGS.site_socials?.map(item => (
+					{NC_SITE_SETTINGS.site_socials?.map((item) => (
 						<a
 							key={item?.name}
 							href={item?.url}

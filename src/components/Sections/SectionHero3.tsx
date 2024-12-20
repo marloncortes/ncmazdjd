@@ -5,6 +5,9 @@ import Card5 from '@/components/Card5/Card5'
 import { ArrowRightIcon } from '@heroicons/react/24/solid'
 import { SectionMagazine1Props } from './SectionMagazine1'
 import { getPostDataFromPostFragment } from '@/utils/getPostDataFromPostFragment'
+import getTrans from '@/utils/getTrans'
+
+const T = getTrans()
 
 export interface SectionHero3Props extends SectionMagazine1Props {}
 
@@ -38,7 +41,7 @@ const SectionHero3: FC<SectionHero3Props> = ({ posts, className = '' }) => {
 						</span>
 						<div className="mt-5 sm:mt-8">
 							<ButtonSecondary href={uri}>
-								<span> Read more</span>
+								<span>{T['Read more'] || 'Read more'}</span>
 								<ArrowRightIcon className="ms-3 h-5 w-5 rtl:rotate-180" />
 							</ButtonSecondary>
 						</div>
@@ -52,7 +55,7 @@ const SectionHero3: FC<SectionHero3Props> = ({ posts, className = '' }) => {
 		const subPosts = posts.filter((_, i) => i >= 1 && i < 4)
 		return (
 			<div className="mt-6 grid transform gap-4 sm:grid-cols-2 md:-mt-20 md:grid-cols-3 lg:gap-8 lg:px-14 xl:px-20 2xl:px-28">
-				{subPosts.map(post => (
+				{subPosts.map((post) => (
 					<Card5
 						className="rounded-3xl bg-white shadow-2xl dark:bg-neutral-800"
 						// @ts-ignore

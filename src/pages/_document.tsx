@@ -72,35 +72,31 @@ export default class Document extends NextDocument {
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `
-                  try {
-                    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                      document.documentElement.classList.add('dark')
-                    } else {
-                      document.documentElement.classList.remove('dark')
-                    }
-                  } catch (_) {}
-                `,
+						try {
+							if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+							document.documentElement.classList.add('dark')
+							} else {
+							document.documentElement.classList.remove('dark')
+							}
+						} catch (_) {}
+						`,
 						}}
 					/>
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `
-                  try {
-                    if (localStorage.dismiss_top_banner === 'true' ) {
-                      document.documentElement.classList.add('dismiss_top_banner')
-                    } else {
-                      document.documentElement.classList.remove('dismiss_top_banner')
-                    }
-                  } catch (_) {}
-                `,
+							try {
+								if (localStorage.dismiss_top_banner === 'true' ) {
+								document.documentElement.classList.add('dismiss_top_banner')
+								} else {
+								document.documentElement.classList.remove('dismiss_top_banner')
+								}
+							} catch (_) {}
+							`,
 						}}
 					/>
 				</Head>
-				<body
-					className={
-						'relative bg-white text-base text-neutral-900 dark:bg-neutral-900/95 dark:text-neutral-100'
-					}
-				>
+				<body className="relative bg-white text-base text-neutral-900 dark:bg-neutral-900/95 dark:text-neutral-100">
 					<Main />
 					<NextScript />
 				</body>

@@ -127,7 +127,7 @@ const SingleContent: FC<SingleContentProps> = ({ post }) => {
 				{/* TAGS */}
 				{tags?.nodes?.length ? (
 					<div className="mx-auto flex max-w-screen-md flex-wrap">
-						{tags.nodes.map(item => (
+						{tags.nodes.map((item) => (
 							<Tag
 								hideCount
 								key={item.databaseId}
@@ -211,7 +211,7 @@ const StickyAction = forwardRef(function (
 				}
 			>
 				<>
-					<div className="flex items-center justify-center gap-1 rounded-full bg-white p-1.5 text-xs shadow-lg ring-1 ring-neutral-900/5 ring-offset-1 sm:gap-2 dark:bg-neutral-800">
+					<div className="flex items-center justify-center gap-1 rounded-full bg-white p-1.5 text-xs shadow-lg ring-1 ring-neutral-900/5 ring-offset-1 sm:gap-2 dark:bg-neutral-800 dark:ring-neutral-700 dark:ring-offset-neutral-600">
 						<PostCardLikeAction
 							likeCount={ncPostMetaData?.likesCount || 0}
 							postDatabseId={databaseId}
@@ -253,7 +253,7 @@ const StickyAction = forwardRef(function (
 					</div>
 
 					<TableContentAnchor
-						className="flex items-center justify-center gap-2 rounded-full bg-white p-1.5 text-xs shadow-lg ring-1 ring-neutral-900/5 ring-offset-1 dark:bg-neutral-800"
+						className="flex items-center justify-center gap-2 rounded-full bg-white p-1.5 text-xs shadow-lg ring-1 ring-neutral-900/5 ring-offset-1 dark:bg-neutral-800 dark:ring-neutral-700 dark:ring-offset-neutral-600"
 						content={content}
 					/>
 				</>

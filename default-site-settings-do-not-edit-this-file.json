@@ -1,5 +1,5 @@
 {
-	"version": "2.8.0",
+	"version": "2.7.0",
 	"mailpoet_api_key": "your_mailpoet_api_key",
 	"mailpoet_list_id": "3",
 	"subcription_widget": {
@@ -54,24 +54,6 @@
 			"url": "https://www.facebook.com/yourfacebookpage",
 			"icon": "/images/socials/facebook.svg",
 			"description": "Follow us on Facebook"
-		},
-		{
-			"name": "twitter",
-			"url": "https://twitter.com/yourtwitterpage",
-			"icon": "/images/socials/x-twitter.svg",
-			"description": "Follow us on Twitter"
-		},
-		{
-			"name": "github",
-			"url": "https://www.github.com/yourmediumpage",
-			"icon": "/images/socials/github.svg",
-			"description": "Follow us on Github"
-		},
-		{
-			"name": "tiktok",
-			"url": "https://www.tiktok.com/yourtiktokpage",
-			"icon": "/images/socials/tiktok.svg",
-			"description": "Follow us on Tiktok"
 		}
 	],
 	"site_header": {
@@ -82,7 +64,7 @@
 		}
 	},
 	"site_footer": {
-		"all_rights_reserved_text": "© 2024 BooliiTheme Company, Inc. All rights reserved."
+		"all_rights_reserved_text": "© 2023 ChisNghiax Company, Inc. All rights reserved."
 	},
 	"single_page": {
 		"show_view_cout": true,
@@ -233,20 +215,6 @@
 				"name": "email",
 				"title": "💌 EMAIL",
 				"desc": "example@example.com"
-			},
-			{
-				"name": "phone",
-				"title": "☎️ PHONE",
-				"desc": "+88 123 456 789"
-			},
-			{
-				"name": "working_hours",
-				"title": "🕒 WORKING HOURS",
-				"desc": "Mon - Fri: 9:00 - 19:00"
-			},
-			{
-				"name": "socials",
-				"title": "👋 SOCIALS"
 			}
 		]
 	},
@@ -269,12 +237,12 @@
 	},
 	"discussion_settings": {
 		"enable": true,
-		"must_logged_in_to_comment": true
+		"must_logged_in_to_comment": false
 	},
 	"general_settings": {
 		"timeFormat": "h:mm a",
 		"language": "en",
 		"timezone": "auto",
-		"dateFormat": "M j, Y"
+		"dateFormat": "F j, Y"
 	}
 }

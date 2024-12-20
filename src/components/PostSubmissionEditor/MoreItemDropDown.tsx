@@ -1,5 +1,11 @@
 import { FC, Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import {
+	Menu,
+	MenuButton,
+	MenuItems,
+	Transition,
+	MenuItem as MenuItemUI,
+} from '@headlessui/react'
 import { TiptapBarItem, TiptapBarItemDivider } from './MenuBar'
 import MenuItem from './MenuItem'
 import { Editor } from '@tiptap/react'
@@ -15,7 +21,7 @@ const MoreItemDropDown: FC<Props> = ({ data = [], editor }) => {
 			as="div"
 			className="relative ms-auto hidden text-start lg:inline-block"
 		>
-			<Menu.Button className={'menu-item ms-auto'} title={'more'}>
+			<MenuButton className={'menu-item ms-auto'} title={'more'}>
 				<div className="menu-item-svg">
 					<svg
 						className="crayons-icon c-btn__icon"
@@ -33,7 +39,7 @@ const MoreItemDropDown: FC<Props> = ({ data = [], editor }) => {
 						></path>
 					</svg>
 				</div>
-			</Menu.Button>
+			</MenuButton>
 			<Transition
 				as={Fragment}
 				enter="transition ease-out duration-100"
@@ -43,12 +49,12 @@ const MoreItemDropDown: FC<Props> = ({ data = [], editor }) => {
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95"
 			>
-				<Menu.Items
+				<MenuItems
 					className={`absolute end-0 top-0 z-40 w-auto origin-top-right divide-y divide-neutral-100 rounded-2xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rtl:origin-top-left dark:bg-neutral-900 dark:ring-white dark:ring-opacity-10`}
 				>
 					<div className="flex items-center p-2.5 text-sm text-neutral-600 dark:text-neutral-300">
 						{data.map((item, index) => (
-							<Menu.Item key={index} as="div">
+							<MenuItemUI key={index} as="div">
 								{(item as TiptapBarItemDivider).type === 'divider' ? (
 									<div className="divider" />
 								) : (
@@ -62,10 +68,10 @@ const MoreItemDropDown: FC<Props> = ({ data = [], editor }) => {
 										className="mr-0.5"
 									/>
 								)}
-							</Menu.Item>
+							</MenuItemUI>
 						))}
 					</div>
-				</Menu.Items>
+				</MenuItems>
 			</Transition>
 		</Menu>
 	)

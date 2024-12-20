@@ -7,6 +7,7 @@ import AvatarDropdown from './AvatarDropdown'
 import Brand from './Brand'
 import CreateBtn from './CreateBtn'
 import { SearchIconBtn } from './HeaderSearch'
+import { NC_SITE_SETTINGS } from '@/contains/site-settings'
 
 export interface MainNav1Props {
 	menuItems: FragmentType<typeof NC_PRIMARY_MENU_QUERY_FRAGMENT>[]
@@ -31,7 +32,8 @@ const MainNav1: FC<MainNav1Props> = ({ menuItems, title, description }) => {
 
 					<div className="flex flex-1 items-center justify-end space-x-1 text-neutral-700 rtl:space-x-reverse dark:text-neutral-100">
 						<div className="hidden items-center lg:flex">
-							<CreateBtn />
+							{!NC_SITE_SETTINGS.site_header?.desktop_header
+								?.hide_create_button && <CreateBtn />}
 							<SearchIconBtn className="flex" />
 							<AvatarDropdown />
 						</div>

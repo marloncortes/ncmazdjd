@@ -6,6 +6,7 @@ import CommentCard, {
 import CommentCardSkeleton from '@/components/CommentCard/CommentCardSkeleton'
 import CommentCardFake from '@/components/CommentCard/CommentCardFake'
 import getTrans from '@/utils/getTrans'
+import { CommentSubmitData } from './SingleCommentForm'
 
 export interface SingleCommentListsProps {
 	postDatabaseId: number
@@ -16,7 +17,10 @@ export interface SingleCommentListsProps {
 	onClickReply?: (comment: TCommentHasChild) => void
 	onClickEdit?: (comment: TCommentHasChild) => void
 	onClickDelete?: (comment: TCommentHasChild) => void
-	onSubmitFormReply: (data: { comment: TCommentHasChild; data: string }) => void
+	onSubmitFormReply: (data: {
+		comment: TCommentHasChild
+		data: CommentSubmitData
+	}) => void
 	onCancelFormReply: () => void
 }
 

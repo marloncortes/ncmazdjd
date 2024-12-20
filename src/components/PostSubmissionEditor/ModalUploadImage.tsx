@@ -1,4 +1,4 @@
-import { Tab } from '@headlessui/react'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react'
 import toast from 'react-hot-toast'
 import ButtonPrimary from '@/components/Button/ButtonPrimary'
 import ButtonThird from '@/components/Button/ButtonThird'
@@ -282,8 +282,8 @@ const ModalUploadImage: FC<MenuItemImageProps> = ({
 	const renderTabsAddImages = () => {
 		return (
 			<div>
-				<Tab.Group>
-					<Tab.List className="flex space-x-1 rounded-xl bg-primary-900/10 p-1 dark:bg-primary-100/10">
+				<TabGroup>
+					<TabList className="flex space-x-1 rounded-xl bg-primary-900/10 p-1 dark:bg-primary-100/10">
 						{catImages.map((category) => (
 							<Tab
 								key={category}
@@ -298,20 +298,20 @@ const ModalUploadImage: FC<MenuItemImageProps> = ({
 								{category}
 							</Tab>
 						))}
-					</Tab.List>
-					<Tab.Panels className="mt-2">
+					</TabList>
+					<TabPanels className="mt-2">
 						{catImages.map((posts, idx) => {
 							return (
-								<Tab.Panel
+								<TabPanel
 									key={idx}
 									className={`space-y-5 rounded-xl bg-neutral-50 p-4 focus:outline-none focus:ring-0 dark:bg-black/10`}
 								>
 									{!idx ? renderInsertFromUpload() : renderInsertFromUrl()}
-								</Tab.Panel>
+								</TabPanel>
 							)
 						})}
-					</Tab.Panels>
-				</Tab.Group>
+					</TabPanels>
+				</TabGroup>
 			</div>
 		)
 	}

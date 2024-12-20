@@ -7,6 +7,7 @@ import Brand from './Brand'
 import CreateBtn from './CreateBtn'
 import dynamic from 'next/dynamic'
 import { HeaderSearchForm, SearchIconBtn } from './HeaderSearch'
+import { NC_SITE_SETTINGS } from '@/contains/site-settings'
 
 const DynamicMenuBar = dynamic(() => import('@/components/MenuBar/MenuBar'), {
 	ssr: false,
@@ -43,8 +44,14 @@ const MainNav2: FC<MainNav2Props> = ({ menuItems, description, title }) => {
 							className="hidden lg:flex"
 						/>
 						<div className="mx-2 hidden h-8 self-center border-l border-neutral-200 md:block dark:border-neutral-700"></div>
-						<CreateBtn className="hidden self-center md:flex" />
-						<SwitchDarkMode className="hidden self-center md:flex" />
+						{!NC_SITE_SETTINGS.site_header?.desktop_header
+							?.hide_create_button && (
+							<CreateBtn className="hidden self-center md:flex" />
+						)}
+						{!NC_SITE_SETTINGS.site_header?.desktop_header
+							?.hide_dark_mode_switch && (
+							<SwitchDarkMode className="hidden self-center md:flex" />
+						)}
 						<SearchIconBtn className="lg:hidden" />
 						<AvatarDropdown className="self-center" />
 					</div>

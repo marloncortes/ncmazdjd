@@ -2,7 +2,13 @@
 
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
 import { FC, Fragment, ReactNode } from 'react'
-import { Menu, Transition } from '@headlessui/react'
+import {
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuItems,
+	Transition,
+} from '@headlessui/react'
 import Link from 'next/link'
 
 export interface NcDropDownItem<T = string> {
@@ -38,13 +44,13 @@ function NcDropDown<T>({
 }: NcDropDownProps<T>) {
 	return (
 		<Menu as="div" className="relative inline-block text-left">
-			<Menu.Button className={className} title={title}>
+			<MenuButton className={className} title={title}>
 				{renderTrigger ? (
 					renderTrigger()
 				) : (
 					<EllipsisHorizontalIcon className={triggerIconClass} />
 				)}
-			</Menu.Button>
+			</MenuButton>
 			<Transition
 				as={Fragment}
 				enter="transition ease-out duration-100"
@@ -54,13 +60,13 @@ function NcDropDown<T>({
 				leaveFrom="transform opacity-100 scale-100"
 				leaveTo="transform opacity-0 scale-95"
 			>
-				<Menu.Items
+				<MenuItems
 					className={`absolute ${panelMenusClass} end-0 z-30 w-56 divide-y divide-neutral-100 rounded-2xl bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-neutral-900 dark:ring-white dark:ring-opacity-10`}
 				>
 					<div className="px-1.5 py-2 text-sm text-neutral-600 dark:text-neutral-300">
-						{data.map(item => (
-							<Menu.Item
-								as={!!item.href ? (item.isTargetBlank ? 'a' : Link) : 'div'}
+						{data.map((item) => (
+							<MenuItem
+								as={item.href ? (item.isTargetBlank ? 'a' : Link) : 'div'}
 								// @ts-ignore
 								href={item.href ?? undefined}
 								key={item.id as string}
@@ -81,10 +87,10 @@ function NcDropDown<T>({
 										</>
 									)
 								}
-							</Menu.Item>
+							</MenuItem>
 						))}
 					</div>
-				</Menu.Items>
+				</MenuItems>
 			</Transition>
 		</Menu>
 	)

@@ -26,7 +26,9 @@ export default function Footer({ menuItems }: Props) {
 		return (
 			<div key={index + item.id}>
 				<h3 className="text-sm font-semibold leading-6 text-neutral-900 dark:text-neutral-200">
-					<Link href={item.uri ?? '/'}>{item.label}</Link>
+					<Link href={item.uri ?? '/'} target={item.target ?? '_self'}>
+						{item.label}
+					</Link>
 				</h3>
 				<ul role="list" className="mt-6 space-y-4">
 					{item.children?.map((j, id) => (
@@ -63,7 +65,7 @@ export default function Footer({ menuItems }: Props) {
 				</div>
 				<div className="mt-16 border-t border-gray-900/10 pt-8 sm:mt-20 md:flex md:items-center md:justify-between lg:mt-24 dark:border-neutral-700">
 					<div className="flex flex-wrap gap-x-6 gap-y-3 md:order-2">
-						{NC_SITE_SETTINGS.site_socials?.map(item => (
+						{NC_SITE_SETTINGS.site_socials?.map((item) => (
 							<a
 								key={item?.name}
 								href={item?.url}
@@ -76,16 +78,20 @@ export default function Footer({ menuItems }: Props) {
 								<MyImage
 									width={22}
 									height={22}
-									className="max-h-[22px] opacity-60 hover:opacity-100"
+									className="relative max-h-[22px] opacity-60 hover:opacity-100"
 									src={item?.icon || ''}
 									alt={item?.name || ''}
 								/>
 							</a>
 						))}
 					</div>
-					<p className="mt-8 text-[13px] leading-5 text-gray-500 md:order-1 md:mt-0">
-						{NC_SITE_SETTINGS.site_footer?.all_rights_reserved_text}
-					</p>
+					<p
+						className="rights_reserved_text mt-8 text-[13px] leading-5 text-neutral-500 md:order-1 md:mt-0"
+						dangerouslySetInnerHTML={{
+							__html:
+								NC_SITE_SETTINGS.site_footer?.all_rights_reserved_text || '',
+						}}
+					></p>
 				</div>
 			</div>
 		</footer>

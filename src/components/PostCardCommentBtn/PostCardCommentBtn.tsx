@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { FC } from 'react'
-import { CommentIcon } from '../Icons/Icons'
+import { Comment01Icon, CommentIcon } from '../Icons/Icons'
 
 export interface PostCardCommentBtnProps {
 	className?: string
@@ -21,12 +21,12 @@ const PostCardCommentBtn: FC<PostCardCommentBtnProps> = ({
 		return (
 			<>
 				<div
-					className={`flex flex-shrink-0 items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 group-hover/PostCardCommentBtn:bg-teal-50 dark:bg-neutral-800 dark:group-hover/PostCardCommentBtn:bg-teal-100 ${sizeClassName}`}
+					className={`flex flex-shrink-0 items-center justify-center rounded-full bg-neutral-50 transition-colors duration-75 group-hover/PostCardCommentBtn:bg-teal-50 dark:bg-neutral-800 dark:group-hover/PostCardCommentBtn:bg-teal-100/10 ${sizeClassName}`}
 				>
-					<CommentIcon />
+					<Comment01Icon className="h-[18px] w-[18px]" />
 				</div>
 
-				<span className="ms-2 min-w-[1.125rem] flex-shrink-0 text-start text-neutral-900 transition-colors duration-100 dark:text-neutral-200">
+				<span className="ms-2 min-w-[1.125rem] flex-shrink-0 text-start text-neutral-900 transition-colors duration-75 dark:text-neutral-200">
 					{commentCount}
 				</span>
 			</>

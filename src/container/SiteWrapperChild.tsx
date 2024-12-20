@@ -13,7 +13,6 @@ import { initLocalPostsSavedListFromLocalstored } from '@/stores/localPostSavedL
 import { usePathname } from 'next/navigation'
 import { CMSUserMetaResponseData } from '@/pages/api/cms-user-meta/[id]'
 import { addViewerReactionPosts } from '@/stores/viewer/viewerSlice'
-import { CMSReactionPostsResponseData } from '@/pages/api/cms-reaction-posts-by-reaction/[...param]'
 
 export function SiteWrapperChild({
 	...props
@@ -34,36 +33,52 @@ export function SiteWrapperChild({
 		dispatch(updateViewerToStore(viewer))
 		// get user meta data
 		fetch('/api/cms-user-meta/' + viewer?.userId)
-			.then(res => res.json())
+			.then((res) => res.json())
 			.then((data: CMSUserMetaResponseData) => {
 				const user = data?.data?.user
 				if (user) {
 					dispatch(updateViewerToStore(user))
 				}
-			})
-			.catch(error => {
-				console.error(error)
-			})
+				if (user?.userReactionFields) {
+					const likes = user.userReactionFields.likedPosts || ''
+					const saves = user.userReactionFields.savedPosts || ''
+					const views = user.userReactionFields.viewedPosts || ''
 
-		// get user reaction posts data (save)
-		fetch(`/api/cms-reaction-posts-by-reaction/${viewer.userId}/save`)
-			.then(res => res.json())
-			.then((data: CMSReactionPostsResponseData) => {
-				const nodes = data?.data?.user?.userReactionPosts?.nodes || []
-				dispatch(addViewerReactionPosts(nodes))
-			})
-			.catch(error => {
-				console.error(error)
-			})
+					const a_likes = likes.split(',') || []
+					const a_saves = saves.split(',') || []
+					const a_views = views.split(',') || []
 
-		// get user reaction posts data (like)
-		fetch(`/api/cms-reaction-posts-by-reaction/${viewer.userId}/like`)
-			.then(res => res.json())
-			.then((data: CMSReactionPostsResponseData) => {
-				const nodes = data?.data?.user?.userReactionPosts?.nodes || []
-				dispatch(addViewerReactionPosts(nodes))
+					// convert a_likes to array of fake posts
+					const likesPosts = a_likes.map((id) => {
+						return {
+							id: id,
+							title: id + ',LIKE',
+						}
+					})
+
+					// convert a_saves to array of fake posts
+					const savesPosts = a_saves.map((id) => {
+						return {
+							id: id,
+							title: id + ',SAVE',
+						}
+					})
+
+					// convert a_views to array of fake posts
+					const viewsPosts = a_views.map((id) => {
+						return {
+							id: id,
+							title: id + ',VIEW',
+						}
+					})
+
+					const reactionPosts = [...likesPosts, ...savesPosts, ...viewsPosts]
+					if (reactionPosts.length > 0) {
+						dispatch(addViewerReactionPosts(reactionPosts))
+					}
+				}
 			})
-			.catch(error => {
+			.catch((error) => {
 				console.error(error)
 			})
 	}, [isAuthenticated, viewer?.userId, isFirstFetchApis])

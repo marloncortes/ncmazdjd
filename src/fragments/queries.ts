@@ -18,23 +18,6 @@ export const GET_POSTS_NCMAZ_META_BY_IDS = gql(/* GraphQL */ `
 	}
 `)
 
-export const GET_ALL_REACTION_POSTS_BY_USER_AND_REACTION = gql(/* GraphQL */ `
-	query QueryGetAllReactionPostsByUserAndReaction(
-		$search: String = ""
-		$first: Int = 400
-		$id: ID!
-	) {
-		user(id: $id, idType: DATABASE_ID) {
-			userReactionPosts(where: { search: $search }, first: $first) {
-				nodes {
-					id
-					title
-				}
-			}
-		}
-	}
-`)
-
 export const GET_USER_META_BY_ID = gql(`#graphql
   query MyQueryGetCMSUser($id: ID!) {
     user(id: $id, idType: DATABASE_ID) {
@@ -47,6 +30,11 @@ export const GET_USER_META_BY_ID = gql(`#graphql
             }
           }
       }
+	  userReactionFields {
+		likedPosts
+		savedPosts
+		viewedPosts
+	}
     }
   }
 `)
@@ -97,38 +85,6 @@ export const QUERY_GET_POSTS_BY = gql(/* GraphQL */ `
 		}
 	}
 `)
-
-export const QUERY_GET_USER_REACTION_POSTS_BY_AUTHOR_AND_SEARCH = gql(
-	/* GraphQL */ `
-		query QueryGetUserReactionPostsByAuthorAndSearch(
-			$first: Int = 400
-			$author: Int = null
-			$authorName: String = ""
-			$search: String = ""
-			$after: String = ""
-		) {
-			userReactionPosts(
-				first: $first
-				where: {
-					author: $author
-					authorName: $authorName
-					search: $search
-					orderby: { field: DATE, order: DESC }
-				}
-				after: $after
-			) {
-				nodes {
-					databaseId
-					title
-				}
-				pageInfo {
-					hasNextPage
-					endCursor
-				}
-			}
-		}
-	`,
-)
 
 export const NC_COMMENT_FULL_FRAGMENT = gql(/* GraphQL */ `
 	fragment NcmazFcCommentFullFields on Comment {

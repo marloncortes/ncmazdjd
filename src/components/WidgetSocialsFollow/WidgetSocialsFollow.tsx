@@ -2,8 +2,10 @@ import { FC } from 'react'
 import MyImage from '../MyImage'
 import WidgetHeading1 from '../WidgetHeading1/WidgetHeading1'
 import { NC_SITE_SETTINGS } from '@/contains/site-settings'
+import getTrans from '@/utils/getTrans'
 
 const socials = NC_SITE_SETTINGS.site_socials
+const T = getTrans()
 
 interface WidgetSocialsFollowProps {
 	className?: string
@@ -14,7 +16,7 @@ const WidgetSocialsFollow: FC<WidgetSocialsFollowProps> = ({
 }) => {
 	return (
 		<div className={`nc-WidgetSocialsFollow overflow-hidden ${className}`}>
-			<WidgetHeading1 title="🧬 We are on socials" />
+			<WidgetHeading1 title={'👋 ' + T['We are on socials']} />
 			<div className="grid grid-cols-2">
 				{socials?.map((social, idex) => (
 					<a
@@ -24,7 +26,7 @@ const WidgetSocialsFollow: FC<WidgetSocialsFollowProps> = ({
 						target="_blank"
 						rel="noopener noreferrer"
 					>
-						<div className="relative mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-400 dark:ring-0">
+						<div className="relative mt-1 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full shadow-lg shadow-neutral-800/5 ring-1 ring-neutral-900/5 dark:border dark:border-neutral-700/50 dark:bg-neutral-300 dark:ring-neutral-300">
 							<MyImage
 								src={social?.icon || ''}
 								alt={social?.name || ''}

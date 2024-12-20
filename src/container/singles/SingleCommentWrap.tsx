@@ -7,7 +7,7 @@ import React, {
 	useState,
 } from 'react'
 import SingleCommentLists from './SingleCommentLists'
-import SingleCommentForm from './SingleCommentForm'
+import SingleCommentForm, { CommentSubmitData } from './SingleCommentForm'
 import ModalDeleteComment from './ModalDeleteComment'
 import ModalEditComment from './ModalEditComment'
 import { flatListToHierarchical, getApolloAuthClient } from '@faustwp/core'
@@ -29,6 +29,8 @@ import {
 import errorHandling from '@/utils/errorHandling'
 import GraphqlError from '@/components/GraphqlError'
 import getTrans from '@/utils/getTrans'
+import { NC_SITE_SETTINGS } from '@/contains/site-settings'
+import { XMarkIcon } from '@heroicons/react/24/outline'
 
 export const CommentWrapContext = createContext<{
 	isReplyingDatabaseId?: number | null
@@ -51,6 +53,8 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 }) => {
 	const endOfNodeCommentListRef = useRef<HTMLDivElement>(null)
 	const T = getTrans()
+	const { discussion_settings } = NC_SITE_SETTINGS
+	const mustLoggedToComment = discussion_settings?.must_logged_in_to_comment
 	//
 	const client = getApolloAuthClient()
 	const { isReady, isAuthenticated } = useSelector(
@@ -112,7 +116,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 				first: 40,
 				contentId: postDatabaseId.toString(),
 			},
-			onError: error => {
+			onError: (error) => {
 				if (refetchTimes > 3) {
 					errorHandling(error)
 					return
@@ -153,6 +157,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		if (comment.databaseId === isOpenReplyFormWithId) {
 			return
 		}
+
 		setIsOpenReplyFormWithId(comment.databaseId)
 	}
 	const closeReplyForm = () => setIsOpenReplyFormWithId(null)
@@ -172,7 +177,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		}
 
 		if (deleteCommentsByIdResult.loading) {
-			toast.loading('Deleting comment...')
+			toast.loading(T['Deleting comment'] + '...')
 			return
 		}
 
@@ -186,7 +191,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 
 		if (deleteCommentsByIdResult.data) {
 			toast.dismiss()
-			toast.success('Delete comment successfully')
+			toast.success(T['Delete comment successfully'])
 			setDeletedCommentIds([
 				...deletedCommentIds,
 				deleteCommentsByIdResult.data?.deleteComment?.comment?.databaseId || 0,
@@ -204,7 +209,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		}
 
 		if (createNewCommentsResult.loading) {
-			toast.loading('Creating comment...')
+			toast.loading(T['Creating comment'] + '...')
 			return
 		}
 
@@ -215,6 +220,9 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 			toast.dismiss()
 			toast.error(
 				createNewCommentsResult?.error?.message || 'Create comment failed',
+				{
+					duration: 5500,
+				},
 			)
 			createNewCommentsResult.reset()
 			return
@@ -222,11 +230,40 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 
 		if (createNewCommentsResult.data) {
 			toast.dismiss()
-			toast.success('Create comment successfully')
 			const newCreated = createNewCommentsResult.data?.createComment
-				?.comment as TCommentHasChild
+				?.comment as TCommentHasChild | null
+
+			if (newCreated) {
+				toast.success(T['Create comment successfully'] + '!')
+			} else {
+				toast.success(
+					(t) => (
+						<div>
+							{
+								T.pageSingle[
+									'Create comment successfully! However, it needs to be approved by the administrator before it will be displayed.'
+								]
+							}
+							<button
+								className="absolute end-1.5 top-1.5"
+								onClick={() => toast.dismiss(t.id)}
+							>
+								<XMarkIcon className="h-4 w-4" />
+							</button>
+						</div>
+					),
+					{
+						duration: 10000,
+						position: 'bottom-center',
+					},
+				)
+			}
+
 			if (
-				!listNewCommentCreated.some(c => c.databaseId === newCreated.databaseId)
+				newCreated &&
+				!listNewCommentCreated.some(
+					(c) => c.databaseId === newCreated.databaseId,
+				)
 			) {
 				setListNewCommentCreated([...listNewCommentCreated, newCreated])
 				setTimeout(() => {
@@ -242,6 +279,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 					)?.classList.add('ring', 'ring-inset')
 				}, 500)
 			}
+
 			createNewCommentsResult.reset()
 			return
 		}
@@ -254,7 +292,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		}
 
 		if (createNewReplyCommentsResult.loading) {
-			toast.loading('Replying comment...')
+			toast.loading(T['Replying comment'] + '...')
 			return
 		}
 
@@ -272,11 +310,41 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 
 		if (createNewReplyCommentsResult.data) {
 			toast.dismiss()
-			toast.success('Reply comment successfully')
+
 			const newCreated = createNewReplyCommentsResult.data?.createComment
-				?.comment as TCommentHasChild
+				?.comment as TCommentHasChild | null
+
+			if (newCreated) {
+				toast.success(T['Reply comment successfully'] + '!')
+			} else {
+				toast.success(
+					(t) => (
+						<div>
+							{
+								T.pageSingle[
+									'Create comment successfully! However, it needs to be approved by the administrator before it will be displayed.'
+								]
+							}
+							<button
+								className="absolute end-1.5 top-1.5"
+								onClick={() => toast.dismiss(t.id)}
+							>
+								<XMarkIcon className="h-4 w-4" />
+							</button>
+						</div>
+					),
+					{
+						duration: 10000,
+						position: 'bottom-center',
+					},
+				)
+			}
+
 			if (
-				!listNewCommentCreated.some(c => c.databaseId === newCreated.databaseId)
+				newCreated &&
+				!listNewCommentCreated.some(
+					(c) => c.databaseId === newCreated.databaseId,
+				)
 			) {
 				setListNewCommentCreated([...listNewCommentCreated, newCreated])
 				setTimeout(() => {
@@ -305,7 +373,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		}
 
 		if (updateCommentByIdResult.loading) {
-			toast.loading('Updating comment...')
+			toast.loading(T['Updating comment'] + '...')
 			return
 		}
 
@@ -323,17 +391,17 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 
 		if (updateCommentByIdResult.data) {
 			toast.dismiss()
-			toast.success('Update comment successfully')
+			toast.success(T['Update comment successfully'])
 			const newUpdated = updateCommentByIdResult.data?.updateComment
 				?.comment as TCommentHasChild
 
 			if (
-				!listCommentUpdated.some(c => c.databaseId === newUpdated.databaseId)
+				!listCommentUpdated.some((c) => c.databaseId === newUpdated.databaseId)
 			) {
 				setListCommentUpdated([...listCommentUpdated, newUpdated])
 			} else {
 				setListCommentUpdated(
-					listCommentUpdated.map(c =>
+					listCommentUpdated.map((c) =>
 						c.databaseId === newUpdated.databaseId ? newUpdated : c,
 					),
 				)
@@ -372,32 +440,34 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		})
 	}
 
-	const handleSubmitCommentForm = (data: string) => {
-		if (!isAuthenticated || !viewer?.databaseId) {
-			toast.error(T.pageSingle['You must login to comment'])
-			return
-		}
-
+	const handleSubmitCommentForm = (data: CommentSubmitData) => {
 		mutaionCreateNewComments({
 			variables: {
-				content: data,
+				content: data.content,
 				commentOn: postDatabaseId,
+				author: data.username,
+				authorEmail: data.email,
 			},
 		})
 	}
 
 	const handleSubmitFormReply = (data: {
 		comment: TCommentHasChild
-		data: string
+		data: CommentSubmitData
 	}) => {
-		if (!isAuthenticated || !viewer?.databaseId) {
-			toast.error(T.pageSingle['You must login to comment'])
+		if (!isAuthenticated && mustLoggedToComment) {
+			toast.error(T.pageSingle['You must login to comment'] + '!', {
+				duration: 5500,
+			})
 			return
 		}
+
 		data.comment.parentDatabaseId &&
 			mutaionCreateNewReplyComments({
 				variables: {
-					content: data.data,
+					content: data.data.content,
+					author: data.data.username,
+					authorEmail: data.data.email,
 					commentOn: postDatabaseId,
 					parent: data.comment.parentDatabaseId.toString(),
 				},
@@ -414,15 +484,18 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 		let dataActual = [...nodes, ...listNewCommentCreated]
 
 		// add new comment updated
-		dataActual = dataActual.map(item => {
+		dataActual = dataActual.map((item) => {
 			const itemUpdated = listCommentUpdated.find(
-				c => c.databaseId === item.databaseId,
+				(c) => c.databaseId === item.databaseId,
 			)
 			return itemUpdated ? itemUpdated : item
 		})
 
 		// add fake comment to show reply form
-		if (isOpenReplyFormWithId && viewer?.databaseId) {
+		if (
+			isOpenReplyFormWithId &&
+			(mustLoggedToComment ? viewer?.databaseId : true)
+		) {
 			dataActual = [
 				...dataActual,
 				{
@@ -432,11 +505,24 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 					databaseId: Number(Date.now()),
 					parentDatabaseId: isOpenReplyFormWithId,
 					parentId:
-						dataActual.find(item => item.databaseId === isOpenReplyFormWithId)
+						dataActual.find((item) => item.databaseId === isOpenReplyFormWithId)
 							?.id || null,
 					content: '',
 					author: {
-						node: viewer as any,
+						node:
+							viewer ||
+							({
+								databaseId: 0,
+								avatar: {
+									url: '',
+								},
+								username: '...',
+								id: 'fake-for-reply',
+								name: '...',
+								uri: '',
+								url: '',
+								__typename: 'User',
+							} as any),
 					},
 				},
 			]
@@ -444,7 +530,7 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 
 		// remove deleted comment -- cai nay phai lam sau phan add new comment
 		dataActual = dataActual?.filter(
-			item => !deletedCommentIds.includes(item?.databaseId),
+			(item) => !deletedCommentIds.includes(item?.databaseId),
 		)
 
 		const aDataHierarchical = flatListToHierarchical(dataActual, {
@@ -554,14 +640,14 @@ const SingleCommentWrap: FC<SingleCommentWrapProps> = ({
 						})
 					}}
 					comment={aDataHandled.aDataFlat.find(
-						item => item.databaseId === isOpenEditModalWithId,
+						(item) => item.databaseId === isOpenEditModalWithId,
 					)}
 				/>
 				<ModalDeleteComment
 					show={!!isOpenDeleteModalWithId}
 					commentDatabaseId={isOpenDeleteModalWithId || 0}
 					onCloseModalDeleteComment={closeModalDeleteComment}
-					onSubmitDeletedComment={databaseID => {
+					onSubmitDeletedComment={(databaseID) => {
 						if (!isAuthenticated) return
 
 						closeModalDeleteComment()

@@ -41,7 +41,7 @@ const AddSubscriberForm: FC<Props> = ({ className = '' }) => {
 	return (
 		<form
 			className={`relative ${className}`}
-			onSubmit={e => {
+			onSubmit={(e) => {
 				e.preventDefault()
 				if (!email) {
 					return
@@ -63,11 +63,11 @@ const AddSubscriberForm: FC<Props> = ({ className = '' }) => {
 					aria-required
 					placeholder={NC_SITE_SETTINGS.subcription_widget?.placeholder}
 					type="email"
-					onChange={e => setemail(e.target.value)}
+					onChange={(e) => setemail(e.target.value)}
 				/>
 				<ButtonCircle
 					type="submit"
-					className="absolute end-1 top-1/2 -translate-y-1/2 transform dark:bg-neutral-300 dark:text-black"
+					className="absolute end-1 top-1/2 -translate-y-1/2 transform dark:bg-neutral-100/10 dark:text-white dark:hover:bg-neutral-100/15"
 					disabled={loading}
 				>
 					<ArrowRightIcon className="h-5 w-5 rtl:rotate-180" />

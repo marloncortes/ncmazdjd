@@ -1,4 +1,21 @@
 export default {
+	'Show all photos': 'Show all photos',
+	'On this page': 'On this page',
+	'We are on socials': 'We are on socials',
+	'Please wait a moment before trying again':
+		'Please wait a moment before trying again',
+	'Replying comment': 'Replying comment',
+	'Updating comment': 'Updating comment',
+	'Update comment successfully': 'Update comment successfully',
+	'Reply comment successfully': 'Reply comment successfully',
+	'Deleting comment': 'Deleting comment',
+	'Delete comment successfully': 'Delete comment successfully',
+	'Creating comment': 'Creating comment',
+	'Create comment successfully': 'Create comment successfully',
+	'Username and email are required': 'Username and email are required',
+	read: 'read',
+	'min read': 'min read',
+	'Read more': 'Read more',
 	Reply: 'Reply',
 	'Delete comment': 'Delete comment',
 	'Are you sure you want to delete this comment? You cannot undo this action.':
@@ -185,6 +202,8 @@ export default {
 		Responses: 'Responses',
 		'You must login to comment': 'You must login to comment',
 		'Add to discussion': 'Add to discussion',
+		'Create comment successfully! However, it needs to be approved by the administrator before it will be displayed.':
+			'Create comment successfully! However, it needs to be approved by the administrator before it will be displayed.',
 	},
 	pageSubmission: {
 		'Revert new changes': 'Revert new changes',

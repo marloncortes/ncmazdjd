@@ -15,6 +15,7 @@ import { updateViewerAllReactionPosts } from '@/stores/viewer/viewerSlice'
 import { useLoginModal } from '@/hooks/useLoginModal'
 
 import toast from 'react-hot-toast'
+import { FavouriteIcon } from '../Icons/Icons'
 
 export interface PostCardLikeActionProps {
 	className?: string
@@ -67,7 +68,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 		if (type === NcmazFcUserReactionPostUpdateResuiltEnum.Added) {
 			newViewerReactionPosts = [
 				...(viewerReactionPosts || []).filter(
-					post => !post.title?.includes(`${postDatabseId},LIKE`),
+					(post) => !post.title?.includes(`${postDatabseId},LIKE`),
 				),
 				{
 					title: `${postDatabseId},LIKE`,
@@ -83,7 +84,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 
 		if (type === NcmazFcUserReactionPostUpdateResuiltEnum.Removed) {
 			// neu type === Remove -> xoa khoi list binh thuong
-			newViewerReactionPosts = (viewerReactionPosts || []).map(post => {
+			newViewerReactionPosts = (viewerReactionPosts || []).map((post) => {
 				if (!post.title?.includes(`${postDatabseId},LIKE`)) {
 					return post
 				} else {
@@ -106,7 +107,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 			if (number === NcmazFcUserReactionPostNumberUpdateEnum.Remove_1) {
 				newViewerReactionPosts = [
 					...(viewerReactionPosts || []).filter(
-						p => !p.title?.includes(`${postDatabseId},LIKE`),
+						(p) => !p.title?.includes(`${postDatabseId},LIKE`),
 					),
 					{
 						title: `${postDatabseId},LIKE`,
@@ -119,7 +120,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 			// Neu la add -> xoa khoi list
 			if (number === NcmazFcUserReactionPostNumberUpdateEnum.Add_1) {
 				newViewerReactionPosts = (viewerReactionPosts || []).filter(
-					post => !post.title?.includes(`${postDatabseId},LIKE`),
+					(post) => !post.title?.includes(`${postDatabseId},LIKE`),
 				)
 
 				// update like count
@@ -135,7 +136,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 	const isLiked = useMemo(() => {
 		// for user logged in
 		return viewerReactionPosts?.some(
-			post =>
+			(post) =>
 				post.title?.trim() == `${postDatabseId},LIKE` &&
 				!post.isNewUnLikeFromClient,
 		)
@@ -154,7 +155,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 				NcmazFcUserReactionPostUpdateResuiltEnum.Error
 		) {
 			console.log('___NcBookmark___error', { error, data })
-
+			toast.error('An error occurred, please try again later.')
 			// dispatch update viewer reaction posts -> when update have error
 			handleDispatchUpdateViewerReactionPosts(
 				postDatabseId,
@@ -218,7 +219,7 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 			return likeCountState
 		}
 		const viewerReactionPost = viewerReactionPosts?.find(
-			post => post.title?.trim() == `${postDatabseId},LIKE`,
+			(post) => post.title?.trim() == `${postDatabseId},LIKE`,
 		)
 		if (typeof viewerReactionPost?.newLikedCount === 'number') {
 			return viewerReactionPost?.newLikedCount
@@ -230,8 +231,8 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 		<button
 			className={`nc-PostCardLikeAction group/PostCardLikeAction relative flex items-center text-xs leading-none transition-colors ${className} ${
 				isLiked
-					? 'text-rose-600'
-					: 'text-neutral-700 hover:text-rose-600 dark:text-neutral-200 dark:hover:text-rose-500'
+					? 'text-rose-600 dark:text-rose-500'
+					: 'text-neutral-700 hover:text-rose-600 dark:text-neutral-200 dark:hover:text-rose-400'
 			} `}
 			onClick={handleClickAction}
 			title={isLiked ? 'Unlike' : 'Like this post'}
@@ -239,30 +240,19 @@ const PostCardLikeAction: FC<PostCardLikeActionProps> = ({
 			<div
 				className={`${sizeClassName} flex flex-shrink-0 items-center justify-center rounded-full transition-colors duration-75 ${
 					isLiked
-						? 'bg-rose-50 dark:bg-rose-100'
-						: 'bg-neutral-50 group-hover/PostCardLikeAction:bg-rose-50 dark:bg-neutral-800 dark:group-hover/PostCardLikeAction:bg-rose-100'
+						? 'bg-rose-50 dark:bg-rose-200/15'
+						: 'bg-neutral-50 group-hover/PostCardLikeAction:bg-rose-50 dark:bg-neutral-800 dark:group-hover/PostCardLikeAction:bg-rose-100/10'
 				}`}
 			>
-				<svg
-					width="24"
-					height="24"
+				<FavouriteIcon
+					color={'currentColor'}
 					fill={isLiked ? 'currentColor' : 'none'}
-					viewBox="0 0 24 24"
-				>
-					<path
-						fillRule="evenodd"
-						stroke="currentColor"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="1"
-						d="M11.995 7.23319C10.5455 5.60999 8.12832 5.17335 6.31215 6.65972C4.49599 8.14609 4.2403 10.6312 5.66654 12.3892L11.995 18.25L18.3235 12.3892C19.7498 10.6312 19.5253 8.13046 17.6779 6.65972C15.8305 5.18899 13.4446 5.60999 11.995 7.23319Z"
-						clipRule="evenodd"
-					></path>
-				</svg>
+					className="h-[18px] w-[18px]"
+				/>
 			</div>
 
 			<span
-				className={`ms-2 min-w-[1.125rem] flex-shrink-0 text-start transition-colors duration-100 ${
+				className={`ms-2 min-w-[1.125rem] flex-shrink-0 text-start transition-colors duration-75 ${
 					isLiked
 						? 'text-rose-600 dark:text-rose-500'
 						: 'text-neutral-900 dark:text-neutral-200'

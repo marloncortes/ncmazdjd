@@ -80,6 +80,7 @@ const TiptapEditor: FC<Props> = ({ onUpdate, defaultContent = '' }) => {
 			},
 		},
 		content: defaultContent,
+		immediatelyRender: false,
 
 		onUpdate: ({ editor }) => {
 			// @ts-ignore

@@ -36,7 +36,10 @@ const ModalEditComment: FC<ModalEditCommentProps> = ({
 				onClickCancel={onCloseModalEditComment}
 				onClickSubmit={(data) => {
 					comment &&
-						onSubmitModalEditComment({ newContent: data, comment: comment })
+						onSubmitModalEditComment({
+							newContent: data.content,
+							comment: comment,
+						})
 				}}
 				isAutoFocus
 				isEditingComment

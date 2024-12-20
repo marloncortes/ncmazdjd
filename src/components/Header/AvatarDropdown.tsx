@@ -6,7 +6,7 @@ import {
 	PopoverButton,
 	PopoverPanel,
 } from '@headlessui/react'
-import { FC, Fragment, useEffect } from 'react'
+import { Fragment, useEffect } from 'react'
 import Avatar from '@/components/Avatar/Avatar'
 import SwitchDarkMode2 from '@/components/SwitchDarkMode/SwitchDarkMode2'
 import Link from 'next/link'
@@ -31,7 +31,6 @@ import CircleLoading from '../Loading/CircleLoading'
 import { useRouter } from 'next/router'
 import getTrans from '@/utils/getTrans'
 import { UserIcon } from '../Icons/Icons'
-import toast from 'react-hot-toast'
 
 interface Props {
 	className?: string

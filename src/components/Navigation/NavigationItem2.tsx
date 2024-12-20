@@ -87,6 +87,7 @@ const NavigationItem2: FC<Props> = ({ menuItem: menuItemProp }) => {
 															<Link
 																href={item.uri || ''}
 																className="font-medium text-neutral-900 dark:text-neutral-200"
+																target={item.target || undefined}
 															>
 																{item.label}
 															</Link>
@@ -181,6 +182,7 @@ const NavigationItem2: FC<Props> = ({ menuItem: menuItemProp }) => {
 					href={{
 						pathname: item.uri || '/',
 					}}
+					target={item.target || undefined}
 				>
 					{item.label}
 				</Link>
@@ -301,6 +303,7 @@ const NavigationItem2: FC<Props> = ({ menuItem: menuItemProp }) => {
 				href={{
 					pathname: item.uri || '',
 				}}
+				target={item.target || undefined}
 			>
 				{item.label}
 				{item.children?.length ? (
@@ -323,6 +326,7 @@ const NavigationItem2: FC<Props> = ({ menuItem: menuItemProp }) => {
 			<ItemC
 				className={` ${open ? '' : 'text-opacity-80'} nc-menu-lv1 group relative inline-flex h-10 items-center px-3 py-1.5 text-sm font-medium text-neutral-800 hover:text-opacity-100 focus:outline-none focus-visible:ring-0 sm:h-12 dark:text-neutral-300`}
 				href={isLink ? menu.uri || '' : ''}
+				target={menu.target || undefined}
 			>
 				<span className="">{menu.label}</span>
 				{!isLink && (

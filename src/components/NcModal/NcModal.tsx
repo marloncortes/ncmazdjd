@@ -1,9 +1,13 @@
 'use client'
 import { FC, ReactNode, useEffect, useState } from 'react'
-import { Dialog, DialogBackdrop } from '@headlessui/react'
+import {
+	Dialog,
+	DialogBackdrop,
+	DialogPanel,
+	DialogTitle,
+} from '@headlessui/react'
 import Button from '../Button/Button'
 import ButtonClose from '../ButtonClose/ButtonClose'
-import { DialogPanel, DialogTitle } from '@headlessui/react'
 import clsx from 'clsx'
 
 export interface NcModalProps {
